@@ -14,7 +14,7 @@
 
 Name:		libverto
 Version:	0.2.4
-Release:	1
+Release:	2
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
@@ -50,8 +50,8 @@ The %{name} package contains libraries for %{name}.
 
 
 %package   -n	%develverto
-Summary:        Development files for %{name}
-Requires:       %{libverto} = %{version}-%{release}
+Summary:	Development files for %{name}
+Requires:	%{libverto} = %{version}-%{release}
 Group:		Development/C 
 
 %description -n %develverto
@@ -59,9 +59,9 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %package -n	%libglib
-Summary:        glib module for %{name}
+Summary:	glib module for %{name}
 Group:		System/Libraries
-Requires:       %{libverto} = %{version}-%{release}
+Requires:	%{libverto} = %{version}-%{release}
 
 %description -n %libglib
 Module for %{name} which provides integration with glib.
