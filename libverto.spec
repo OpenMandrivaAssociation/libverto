@@ -23,7 +23,7 @@ Source0:	http://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
 Patch1:		libverto-0.2.4-fix-libev.patch
 
 BuildRequires:	glib2-devel
-BuildRequires:	libev-devel
+BuildRequires:	pkgconfig(libev)
 BuildRequires:	libevent-devel
 BuildRequires:	tevent-devel
 
