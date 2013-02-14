@@ -1,31 +1,29 @@
 %define major 1
 
-
 %define libverto %mklibname verto %{major}
-%define develverto %mklibname verto -d
-%define libglib %mklibname glib
-%define libglibdevel %mklibname glib -d
-%define libev %mklibname ev
-%define libevdevel %mklibname ev -d
-%define	libtevent %mklibname tevent
-%define	libteventdevel %mklibname tevent -d
-%define libevent %mklibname event
-%define libeventdevel %mklibname event -d
+%define devverto %mklibname verto -d
+%define libglib %mklibname %{name}-glib %{major}
+%define devglib %mklibname %{name}-glib -d
+%define libev %mklibname %{name}-ev %{major}
+%define devev %mklibname %{name}-ev -d
+%define libevent %mklibname %{name}-event %{major}
+%define devevent %mklibname %{name}-event -d
+%define	libtevent %mklibname %{name}-tevent %{major}
+%define	devtevent %mklibname %{name}-tevent -d
 
 Name:		libverto
-Version:	0.2.4
-Release:	5
+Version:	0.2.5
+Release:	1
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
-URL:		https://fedorahosted.org/libverto/
+Url:		https://fedorahosted.org/libverto/
 Source0:	http://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
-Patch1:		libverto-0.2.4-fix-libev.patch
 
-BuildRequires:	glib2-devel
+BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libev)
-BuildRequires:	libevent-devel
-BuildRequires:	tevent-devel
+BuildRequires:	pkgconfig(libevent)
+BuildRequires:	pkgconfig(tevent)
 
 %description
 libverto provides a way for libraries to expose asynchronous interfaces
@@ -40,164 +38,160 @@ timeout and signal functionality. Currently glib is the only module
 that does not provide these three because it lacks signal. However,
 glib will support signal in the future.
 
-
-%package   -n	%libverto
+%package   -n	%{libverto}
 Summary:	System libraries for %{name}
 Group:		System/Libraries
 
-%description -n %libverto
+%description -n %{libverto}
 The %{name} package contains libraries for %{name}.
 
-
-%package   -n	%develverto
+%package   -n	%{devverto}
 Summary:	Development files for %{name}
-Requires:	%{libverto} = %{version}-%{release}
 Group:		Development/C 
+Requires:	%{libverto} = %{version}-%{release}
 
-%description -n %develverto
+%description -n %{devverto}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-%package -n	%libglib
+%package -n	%{libglib}
 Summary:	glib module for %{name}
 Group:		System/Libraries
-Requires:	%{libverto} = %{version}-%{release}
+Obsoletes:	%{_lib}glib < 0.2.5-1
 
-%description -n %libglib
+%description -n %{libglib}
 Module for %{name} which provides integration with glib.
 
 This package does NOT yet provide %{name}-module-base.
 
-%package  -n	%libglibdevel
+%package  -n	%{devglib}
 Summary:        Development files for %{name}-glib
-Requires:       %{libglib} = %{version}-%{release}
-Requires:       %{develverto} = %{version}-%{release}
 Group:		Development/C 
+Requires:       %{libglib} = %{version}-%{release}
+Requires:       %{devverto} = %{version}-%{release}
 
-%description -n %libglibdevel
+%description -n %{devglib}
 The %{name}-glib-devel package contains libraries and header files for
 developing applications that use %{name}-glib.
 
-%package -n     %libev
+%package -n     %{libev}
 Summary:        libev module for %{name}
-Requires:       %{libverto} = %{version}-%{release}
 Group:		System/Libraries
 Provides:       %{name}-module-base = %{version}-%{release}
+Obsoletes:	%{_lib}ev < 0.2.5-1
 
-%description -n %libev
+%description -n %{libev}
 Module for %{name} which provides integration with libev.
 
 This package provides %{name}-module-base since it supports io, timeout
 and signal.
 
-%package  -n    %libevdevel
+%package  -n    %{devev}
 Summary:        Development files for %{name}-libev
-Requires:       %{libev} = %{version}-%{release}
-Requires:       %{develverto} = %{version}-%{release}
 Group:		Development/C 
+Requires:       %{libev} = %{version}-%{release}
+Requires:       %{devverto} = %{version}-%{release}
 
-%description -n %libevdevel
+%description -n %{devev}
 The %{name}-libev-devel package contains libraries and header files for
 developing applications that use %{name}-libev.
 
 This package provides %{name}-module-base since it supports io, timeout
 and signal.
 
-%package  -n    %libevent
+%package  -n    %{libevent}
 Summary:        libevent module for %{name}
-Requires:       %{libverto} = %{version}-%{release}
-Provides:       %{name}-module-base = %{version}-%{release}
 Group:		System/Libraries
+Provides:       %{name}-module-base = %{version}-%{release}
+Obsoletes:	%{_lib}event < 0.2.5-1
 
-%description -n %libevent
+%description -n %{libevent}
 Module for %{name} which provides integration with libevent.
 
-%package   -n   %libeventdevel
+%package   -n   %{devevent}
 Summary:        Development files for %{name}-libevent
-Requires:       %{libevent} = %{version}-%{release}
-Requires:       %{develverto} = %{version}-%{release}
 Group:		Development/C 
+Requires:       %{libevent} = %{version}-%{release}
+Requires:       %{devverto} = %{version}-%{release}
 
-%description -n %libeventdevel
+%description -n %{devevent}
 The %{name}-libevent-devel package contains libraries and header files for
 developing applications that use %{name}-libevent.
 
-%package   -n   %libtevent
+%package   -n   %{libtevent}
 Summary:        tevent module for %{name}
-Requires:       %{libverto} = %{version}-%{release}
-Provides:       %{name}-module-base = %{version}-%{release}
 Group:		System/Libraries
+Provides:       %{name}-module-base = %{version}-%{release}
+Obsoletes:	%{_lib}tevent < 0.2.5-1
 
-%description -n   %libtevent
+%description -n   %{libtevent}
 Module for %{name} which provides integration with tevent.
 
 This package provides %{name}-module-base since it supports io, timeout
 and signal.
 
-%package  -n	%libteventdevel
+%package  -n	%{devtevent}
 Summary:        Development files for %{name}-tevent
-Requires:       %{libtevent} = %{version}-%{release}
-Requires:       %{develverto} = %{version}-%{release}
 Group:		Development/C 
+Requires:       %{libtevent} = %{version}-%{release}
+Requires:       %{devverto} = %{version}-%{release}
 
-%description -n %libteventdevel
+%description -n %{devtevent}
 The %{name}-tevent-devel package contains libraries and header files for
 developing applications that use %{name}-tevent.
 
 %prep
 %setup -q
-%patch1 -p1
+%apply_patches
 
 %build
-autoreconf -fi
 %configure --disable-static
-make
+%make
 
 %install
 %makeinstall_std
-find %{buildroot} -name '*.la' -exec rm -f {} ';'
-
 
 %files
 %doc AUTHORS ChangeLog COPYING NEWS README
 
 %files -n %{libverto}
-%{_libdir}/%{name}.so.*
+%{_libdir}/%{name}.so.%{major}*
 
-%files -n %develverto
+%files -n %{devverto}
 %{_includedir}/verto.h
 %{_includedir}/verto-module.h
 %{_libdir}/%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
 
-%files -n %libglib
-%{_libdir}/%{name}-glib.so.*
+%files -n %{libglib}
+%{_libdir}/%{name}-glib.so.%{major}*
 
-%files -n %libglibdevel
+%files -n %{devglib}
 %{_includedir}/verto-glib.h
 %{_libdir}/%{name}-glib.so
 %{_libdir}/pkgconfig/%{name}-glib.pc
 
-%files -n %libev
-%{_libdir}/%{name}-libev.so.*
+%files -n %{libev}
+%{_libdir}/%{name}-libev.so.%{major}*
 
-%files -n %libevdevel
+%files -n %{devev}
 %{_includedir}/verto-libev.h
 %{_libdir}/%{name}-libev.so
 %{_libdir}/pkgconfig/%{name}-libev.pc
 
-%files -n %libevent
-%{_libdir}/%{name}-libevent.so.*
+%files -n %{libevent}
+%{_libdir}/%{name}-libevent.so.%{major}*
 
-%files -n %libeventdevel
+%files -n %{devevent}
 %{_includedir}/verto-libevent.h
 %{_libdir}/%{name}-libevent.so
 %{_libdir}/pkgconfig/%{name}-libevent.pc
 
-%files -n %libtevent
-%{_libdir}/%{name}-tevent.so.*
+%files -n %{libtevent}
+%{_libdir}/%{name}-tevent.so.%{major}*
 
-%files -n %libteventdevel
+%files -n %{devtevent}
 %{_includedir}/verto-tevent.h
 %{_libdir}/%{name}-tevent.so
 %{_libdir}/pkgconfig/%{name}-tevent.pc
+
