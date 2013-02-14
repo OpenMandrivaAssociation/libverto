@@ -4,10 +4,10 @@
 %define devverto %mklibname verto -d
 %define libglib %mklibname %{name}-glib %{major}
 %define devglib %mklibname %{name}-glib -d
-%define libev %mklibname %{name}-ev %{major}
-%define devev %mklibname %{name}-ev -d
-%define libevent %mklibname %{name}-event %{major}
-%define devevent %mklibname %{name}-event -d
+%define libev %mklibname %{name}-libev %{major}
+%define devev %mklibname %{name}-libev -d
+%define libevent %mklibname %{name}-libevent %{major}
+%define devevent %mklibname %{name}-libevent -d
 %define	libtevent %mklibname %{name}-tevent %{major}
 %define	devtevent %mklibname %{name}-tevent -d
 
