@@ -1,19 +1,19 @@
 %define major 1
-
-%define libverto %mklibname verto %{major}
-%define devverto %mklibname verto -d
-%define libglib %mklibname %{name}-glib %{major}
-%define devglib %mklibname %{name}-glib -d
-%define libev %mklibname %{name}-libev %{major}
-%define devev %mklibname %{name}-libev -d
-%define libevent %mklibname %{name}-libevent %{major}
-%define devevent %mklibname %{name}-libevent -d
-%define	libtevent %mklibname %{name}-tevent %{major}
-%define	devtevent %mklibname %{name}-tevent -d
+%define oname verto
+%define libverto %mklibname %{oname} %{major}
+%define devverto %mklibname %{oname} -d
+%define libglib %mklibname %{oname}-glib %{major}
+%define devglib %mklibname %{oname}-glib -d
+%define libev %mklibname %{oname}-libev %{major}
+%define devev %mklibname %{oname}-libev -d
+%define libevent %mklibname %{oname}-libevent %{major}
+%define devevent %mklibname %{oname}-libevent -d
+%define	libtevent %mklibname %{oname}-tevent %{major}
+%define	devtevent %mklibname %{oname}-tevent -d
 
 Name:		libverto
 Version:	0.2.5
-Release:	2
+Release:	3
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
