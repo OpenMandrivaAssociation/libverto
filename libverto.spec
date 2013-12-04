@@ -11,6 +11,8 @@
 %define	libtevent %mklibname %{oname}-tevent %{major}
 %define	devtevent %mklibname %{oname}-tevent -d
 
+%bcond_with	crosscompile
+
 Name:		libverto
 Version:	0.2.5
 Release:	3
@@ -145,6 +147,7 @@ developing applications that use %{name}-tevent.
 %apply_patches
 
 %build
+autoreconf -fiv
 %configure --disable-static
 %make
 
@@ -187,6 +190,7 @@ developing applications that use %{name}-tevent.
 %{_libdir}/%{name}-libevent.so
 %{_libdir}/pkgconfig/%{name}-libevent.pc
 
+%if !%{with crosscompile}
 %files -n %{libtevent}
 %{_libdir}/%{name}-tevent.so.%{major}*
 
@@ -194,4 +198,5 @@ developing applications that use %{name}-tevent.
 %{_includedir}/verto-tevent.h
 %{_libdir}/%{name}-tevent.so
 %{_libdir}/pkgconfig/%{name}-tevent.pc
+%endif
 
