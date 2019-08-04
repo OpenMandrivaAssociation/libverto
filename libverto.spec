@@ -14,13 +14,13 @@
 %bcond_with	crosscompile
 
 Name:		libverto
-Version:	0.2.5
-Release:	16
+Version:	0.3.1
+Release:	1
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
 Url:		https://fedorahosted.org/libverto/
-Source0:	http://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/latchset/libverto/archive/%{version}.tar.gz
 
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libev)
@@ -145,6 +145,8 @@ developing applications that use %{name}-tevent.
 %prep
 %setup -q
 %apply_patches
+sed -i 's!ev.h!libev/ev.h!g' configure.ac
+sed -i 's!ev.h!libev/ev.h!g' src/verto-libev.h
 
 %build
 autoreconf -fiv
