@@ -144,7 +144,7 @@ developing applications that use %{name}-tevent.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 sed -i 's!ev.h!libev/ev.h!g' configure.ac
 sed -i 's!ev.h!libev/ev.h!g' src/verto-libev.h
 
