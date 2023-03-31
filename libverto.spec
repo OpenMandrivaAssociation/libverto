@@ -15,7 +15,7 @@
 
 Name:		libverto
 Version:	0.3.1
-Release:	1
+Release:	2
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
