@@ -22,6 +22,11 @@ License:	MIT
 Url:		https://fedorahosted.org/libverto/
 Source0:	https://github.com/latchset/libverto/archive/%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libev)
 BuildRequires:	pkgconfig(libevent)
