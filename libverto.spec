@@ -14,8 +14,8 @@
 %bcond_with	crosscompile
 
 Name:		libverto
-Version:	0.3.1
-Release:	2
+Version:	0.3.2
+Release:	1
 Summary:	Main loop abstraction library
 Group:		System/Libraries
 License:	MIT
